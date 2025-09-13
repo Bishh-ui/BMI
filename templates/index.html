@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced BMI Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Image Section -->
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='images/image.jpg') }}" alt="BMI Illustration">
+        </div>
+
+        <h1>Advanced BMI Calculator</h1>
+        
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        
+        <form method="POST" action="/">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" step="0.1" id="weight" name="weight" required><br>
+
+            <label for="height">Height (feet, e.g., 6.3 for 6 feet 3 inches):</label>
+            <input type="number" step="0.1" id="height" name="height" required><br>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select><br>
+
+            <button type="submit">Calculate</button>
+        </form>
+    </div>
+</body>
+</html>

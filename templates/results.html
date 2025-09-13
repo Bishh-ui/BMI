@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Image Section -->
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='images/image.jpg') }}" alt="BMI Illustration">
+        </div>
+
+        <h1>BMI Results</h1>
+        <p><strong>BMI:</strong> {{ bmi }} ({{ category }})</p>
+        <p><strong>Estimated Body Fat:</strong> {{ body_fat }}%</p>
+        <p><strong>Basal Metabolic Rate (BMR):</strong> {{ bmr }} kcal/day</p>
+        <p><strong>Health Risk:</strong> {{ risk }}</p>
+        <p><strong>Recommendations:</strong> {{ recommendations }}</p>
+
+        <!-- Chart Section -->
+        <canvas id="bmiChart"></canvas>
+
+        <a href="/">Calculate Again</a>
+    </div>
+
+    <!-- External Chart Logic -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        const chartData = {{ chart_data | tojson }};
+        renderChart(chartData);
+    </script>
+</body>
+</html>
